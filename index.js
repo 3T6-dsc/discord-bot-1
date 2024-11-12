@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const Client = require('./client/Client');
 const config = require('./config.json');
 const {Player} = require('discord-player');
+const { YoutubeiExtractor } = require("discord-player-youtubei")
 
 const client = new Client();
 client.commands = new Discord.Collection();
@@ -20,7 +21,7 @@ console.log(client.commands);
 
 const player = new Player(client);
 
-player.extractors.loadDefault().then(r => console.log('Extractors loaded successfully'));
+player.extractors.register(YoutubeiExtractor, {})
 
 // Still needs to be refactored for 0.6
 /*player.events.on('connection', (queue) => {
